@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from escola.models import creditCard
+from serializer import CreditCardSerializer
 
-# Create your views here.
+class creditCardsViewSet(viewsets.ModelViewSet):
+
+    queryset = Aluno.objects.all()
+    serializer_class = CreditCardSerializer
