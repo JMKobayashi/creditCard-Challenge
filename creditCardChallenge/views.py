@@ -7,7 +7,7 @@ from creditCardChallenge.serializer import CreditCardSerializer
 
 from django.http.response import JsonResponse
 
-class creditCardsViewSet(APIView):
+class creditCardsView(APIView):
 
     def get(self,request):
         credit_card_list = CreditCard.objects.all()
