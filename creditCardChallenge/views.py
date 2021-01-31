@@ -1,5 +1,5 @@
 from rest_framework.parsers import JSONParser
-from restframework import status
+from rest_framework import status
 from rest_framework.view import APIview
 
 from creditCardChallenge.models import CreditCard
@@ -9,5 +9,7 @@ from django.http.response import JsonResponse
 
 class creditCardsViewSet(APIview):
 
-    queryset = CreditCard.objects.all()
-    serializer_class = CreditCardSerializer
+    def get(self,request):
+        credit_card_list = CreditCard.objects.all()
+
+        credit_card_id = 
