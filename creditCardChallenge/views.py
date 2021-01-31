@@ -20,6 +20,6 @@ class creditCardsView(APIView):
             credit_card_list = credit_card_list.filter(id=credit_card_id)
         
         serializer_result = CreditCardSerializer(credit_card_list )
-        return serializer_result
+        return JsonResponse(serializer_result.data, safe=False)
 
 
