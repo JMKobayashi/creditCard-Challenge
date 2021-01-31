@@ -1,8 +1,13 @@
-from rest_framework import viewsets
+from rest_framework.parsers import JSONParser
+from restframework import status
+from rest_framework.view import APIview
+
 from creditCardChallenge.models import CreditCard
 from creditCardChallenge.serializer import CreditCardSerializer
 
-class creditCardsViewSet(viewsets.ModelViewSet):
+from django.http.response import JsonResponse
+
+class creditCardsViewSet(APIview):
 
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
