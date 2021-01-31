@@ -13,13 +13,13 @@ class creditCardsView(APIView):
         credit_card_list = CreditCard.objects.all()
         
         # Verifying if ID is in the parameters passed in GET REQUEST
-        credit_card_id = request.query_params.get('id',None)
+        credit_card_id = request.query_params.get('id', None)
         
         # if a parameter is passed filter results by parameter
         if credit_card_id is not None:
             credit_card_list = credit_card_list.filter(id=credit_card_id)
         
-        serializer_result = CreditCardSerializer(credit_card_list )
-        return JsonResponse(serializer_result.data, safe=False)
+        serializer_result = CreditCardSerializer(credit_card_list, many = True)
+        return JsonResponse(serializer_result.data,safe=False,)
 
 
