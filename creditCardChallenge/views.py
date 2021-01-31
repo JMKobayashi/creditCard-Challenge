@@ -1,8 +1,8 @@
 from rest_framework import viewsets
-from escola.models import creditCard
+from creditCardChallenge.models import creditCard
 from serializer import CreditCardSerializer
 
 class creditCardsViewSet(viewsets.ModelViewSet):
 
-    queryset = Aluno.objects.all()
+    queryset = creditCard.objects.all()
     serializer_class = CreditCardSerializer
