@@ -19,7 +19,7 @@ class creditCardsView(APIView):
         if credit_card_id is not None:
             credit_card_list = credit_card_list.filter(id=credit_card_id)
         
-        serializer_result = CreditCardSerializer
+        serializer_result = CreditCardSerializer(credit_card_list )
         return serializer_result
 
 
