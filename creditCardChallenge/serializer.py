@@ -10,3 +10,8 @@ class CreditCardSerializer(serializers.ModelSerializer):
         representation = super(CreditCardSerializer, self).viewRepresentation(instance)
 
         return representation
+
+class CreditCardDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CreditCard
+        exclude = ['id']
