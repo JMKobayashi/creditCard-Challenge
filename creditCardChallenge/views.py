@@ -1,6 +1,6 @@
 from rest_framework.parsers import JSONParser
 from rest_framework import status
-from rest_framework.views import APIView
+from rest_framework.views import APIView, generics
 
 from creditCardChallenge.models import CreditCard
 from creditCardChallenge.serializer import CreditCardSerializer
@@ -16,3 +16,5 @@ class creditCardsView(APIView):
         return JsonResponse(serializer_result.data,safe=False,)
 
 
+class creditCardDetail(generics.ListAPIView):
+    
