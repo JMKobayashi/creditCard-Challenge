@@ -1,6 +1,6 @@
 from rest_framework.parsers import JSONParser
-from rest_framework import status
-from rest_framework.views import APIView, generics
+from rest_framework import status, generics
+from rest_framework.views import APIView
 
 from creditCardChallenge.models import CreditCard
 from creditCardChallenge.serializer import CreditCardSerializer,CreditCardDetailSerializer
@@ -20,3 +20,4 @@ class creditCardDetail(generics.ListAPIView):
     def get_querySet(self):
         querySet = Matriculas.objects.filter(id=self.kwarg['pk'])
         return querySet
+    serializer_classe = CreditCardDetailSerializer
