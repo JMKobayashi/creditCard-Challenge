@@ -17,7 +17,7 @@ class creditCardsView(APIView):
 
 
 class creditCardDetail(generics.ListAPIView):
-    def get_querySet(self):
-        querySet = Matriculas.objects.filter(id=self.kwarg['pk'])
-        return querySet
-    serializer_classe = CreditCardDetailSerializer
+    def get_queryset(self):
+        credit_card_detail = CreditCard.objects.filter(id=self.kwargs['pk'])
+        return credit_card_detail
+    serializer_class = CreditCardDetailSerializer
