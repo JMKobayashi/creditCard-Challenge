@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.views import APIView, generics
 
 from creditCardChallenge.models import CreditCard
-from creditCardChallenge.serializer import CreditCardSerializer
+from creditCardChallenge.serializer import CreditCardSerializer,CreditCardDetailSerializer
 
 from django.http.response import JsonResponse
 
@@ -17,4 +17,6 @@ class creditCardsView(APIView):
 
 
 class creditCardDetail(generics.ListAPIView):
-    
+    def get_querySet(self):
+        querySet = Matriculas.objects.filter(id=self.kwarg['pk'])
+        return querySet
