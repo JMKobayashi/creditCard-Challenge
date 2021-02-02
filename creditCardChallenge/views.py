@@ -24,3 +24,5 @@ class creditCardsView(APIView):
 
     def post(self,request):
         
+        json_request = JSONParser().parse(request)
+        dataSerializer = CreditCardSerializer(data=data)
