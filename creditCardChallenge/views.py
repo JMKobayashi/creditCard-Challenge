@@ -26,3 +26,6 @@ class creditCardsView(APIView):
         
         json_request = JSONParser().parse(request)
         dataSerializer = CreditCardSerializer(data=data)
+
+        dataSerializer.save()
+        return JsonResponse(dataSerializer.data, status = HTTP_201_CREATED)
