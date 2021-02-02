@@ -3,7 +3,7 @@ from rest_framework import status, generics
 from rest_framework.views import APIView
 
 from creditCardChallenge.models import CreditCard
-from creditCardChallenge.serializer import CreditCardSerializer,CreditCardDetailSerializer
+from creditCardChallenge.serializer import CreditCardSerializer
 
 from django.http.response import JsonResponse
 
@@ -14,10 +14,3 @@ class creditCardsView(APIView):
 
         serializer_result = CreditCardSerializer(credit_card_list, many = True)
         return JsonResponse(serializer_result.data,safe=False,)
-
-
-class creditCardDetail(generics.ListAPIView):
-    def get_queryset(self):
-        credit_card_detail = CreditCard.objects.filter(id=self.kwargs['pk'])
-        return credit_card_detail
-    serializer_class = CreditCardDetailSerializer
