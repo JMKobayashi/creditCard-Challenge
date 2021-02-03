@@ -29,8 +29,13 @@ class CreditCardSerializer(serializers.ModelSerializer):
         except ValueError:
             raise serializers.ValidationError("exp_date is invalid.")
 
+        return date
 
-
+    def validate_holder(self, value):
+        if (len(value)<2):
+            raise serializers.ValidationError("Holder has less than 3 characters")
+        
+        return value
 
     def viewRepresentation(self,instance):
         representation = super(CreditCardSerializer, self).viewRepresentation(instance)
