@@ -48,7 +48,7 @@ class CreditCardSerializer(serializers.ModelSerializer):
         return exp_date
 
     def validate_holder(self, value):
-        if (len(value)<2):
+        if (len(value)<3):
             raise serializers.ValidationError("Holder has less than 3 characters")
         
         return value
