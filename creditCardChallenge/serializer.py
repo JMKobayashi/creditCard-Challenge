@@ -10,7 +10,7 @@ class CreditCardSerializer(serializers.ModelSerializer):
     
     # Validating parameters field to save in the database
 
-    def exp_date_validate(self,value):
+    def validate_exp_date(self,value):
         # validating the date
         value = value.replace("-","/")
         try:
@@ -35,6 +35,9 @@ class CreditCardSerializer(serializers.ModelSerializer):
         if (len(value)<2):
             raise serializers.ValidationError("Holder has less than 3 characters")
         
+        return value
+    
+    def validate_number(self,value):
         return value
 
     def viewRepresentation(self,instance):
