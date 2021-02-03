@@ -30,4 +30,5 @@ class creditCardsView(APIView):
         if dataSerializer.is_valid(raise_exception=True):
 
             dataSerializer.save()
-        return JsonResponse(dataSerializer.data)
+            return JsonResponse(dataSerializer.data,status=status.HTTP_201_CREATED)
+        return JsonResponse(dataSerializer.data,status=status.HTTP_400_BAD_REQUEST)
