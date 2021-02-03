@@ -40,6 +40,12 @@ class CreditCardSerializer(serializers.ModelSerializer):
     def validate_number(self,value):
         return value
 
+    def validate_cvv(self,value):
+        if len(value) > 4:
+            raise serializers.ValidationError("cvv has more than 4 digits")
+        
+        return value
+
     def viewRepresentation(self,instance):
         representation = super(CreditCardSerializer, self).viewRepresentation(instance)
 
