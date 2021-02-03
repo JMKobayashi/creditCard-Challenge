@@ -33,6 +33,8 @@ class CreditCardSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("exp_date is invalid.")
 
         last_day_month = calendar.monthrange(date.year,date.month)[1]
+        if date.month < 10:
+            month = "0" + str(date.month)
         
         exp_date = str("{}/{}/{}".format(last_day_month,date.month,date.year))
 
@@ -47,10 +49,10 @@ class CreditCardSerializer(serializers.ModelSerializer):
     def validate_number(self,value):
         validated_cc = CreditCard(value)
 
-        if validated_cc.is_valid():
-            raise serializers.ValidationError("Credit Card is not valid")
+        #if validated_cc.is_valid():
+            #raise serializers.ValidationError("Credit Card is not valid")
 
-        return validated_cc.brand()
+        return validated_cc#.brand()
 
     def validate_cvv(self,value):
         if len(value) > 4:
