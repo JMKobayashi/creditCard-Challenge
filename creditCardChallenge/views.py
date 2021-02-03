@@ -2,7 +2,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status, generics
 from rest_framework.views import APIView
 
-from creditCardChallenge.models import CreditCard
+from creditCardChallenge.models import CreditCardModel
 from creditCardChallenge.serializer import CreditCardSerializer
 
 from django.http.response import JsonResponse

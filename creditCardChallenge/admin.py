@@ -1,5 +1,5 @@
 from django.contrib import admin
-from creditCardChallenge.models import CreditCard
+from creditCardChallenge.models import CreditCardModel
 
 class CreditCards(admin.ModelAdmin):
     list_display = ('id','exp_date','holder','number','cvv')
@@ -7,4 +7,4 @@ class CreditCards(admin.ModelAdmin):
     search_fields = ('id','number')
     list_per_page = 10
 
-admin.site.register(CreditCard,CreditCards)
+admin.site.register(CreditCardModel,CreditCards)
