@@ -36,7 +36,12 @@ class CreditCardSerializer(serializers.ModelSerializer):
         if date.month < 10:
             month = "0" + str(date.month)
         
-        exp_date = str("{}/{}/{}".format(last_day_month,date.month,date.year))
+        if (full_year):
+            year = date.year()
+        else:
+            year = date.strftime("%Y")
+
+        exp_date = str("{}-{}-{}".format(year,date.month,last_day_month))
 
         return exp_date
 
