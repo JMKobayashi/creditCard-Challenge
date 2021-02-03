@@ -2,10 +2,13 @@ from rest_framework import serializers
 from creditCardChallenge.models import CreditCardModel
 
 from datetime import datetime
+import calendar
+
+from creditcard import CreditCard
 
 class CreditCardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CreditCard
+        model = CreditCardModel
         fields = '__all__'
     
     # Validating parameters field to save in the database
@@ -29,7 +32,11 @@ class CreditCardSerializer(serializers.ModelSerializer):
         except ValueError:
             raise serializers.ValidationError("exp_date is invalid.")
 
-        return date
+        last_day_month = calendar.monthrange(date.year,date.month)[1]
+        
+        exp_date = str("{}/{}/{}".format(last_day_month,date.month,date.year))
+
+        return exp_date
 
     def validate_holder(self, value):
         if (len(value)<2):
@@ -38,7 +45,12 @@ class CreditCardSerializer(serializers.ModelSerializer):
         return value
     
     def validate_number(self,value):
-        return value
+        validated_cc = CreditCard(value)
+
+        if validated_cc.is_valid():
+            raise serializers.ValidationError("Credit Card is not valid")
+
+        return validated_cc.brand()
 
     def validate_cvv(self,value):
         if len(value) > 4:
