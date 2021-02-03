@@ -1,6 +1,6 @@
 from django.db import models
 
-class CreditCard(models.Model):
+class CreditCardModel(models.Model):
     exp_date = models.CharField(max_length=10,blank=False)
     holder = models.CharField(max_length=30,blank=False)
     number = models.CharField(max_length=16,blank=False)

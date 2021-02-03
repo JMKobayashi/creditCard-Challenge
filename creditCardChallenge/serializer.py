@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from creditCardChallenge.models import CreditCard
+from creditCardChallenge.models import CreditCardModel
 
 from datetime import datetime
 
@@ -44,6 +44,9 @@ class CreditCardSerializer(serializers.ModelSerializer):
         if len(value) > 4:
             raise serializers.ValidationError("cvv has more than 4 digits")
         
+        if len(value) < 3:
+            raise serializers.ValidationError("cvv has less tha 3 digits")
+
         return value
 
     def viewRepresentation(self,instance):
