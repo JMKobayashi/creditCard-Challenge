@@ -3,6 +3,7 @@ from creditCardChallenge.models import CreditCardModel
 
 from datetime import datetime
 import calendar
+import re
 
 from creditcard import CreditCard
 
@@ -57,10 +58,10 @@ class CreditCardSerializer(serializers.ModelSerializer):
     def validate_number(self,value):
         validated_cc = CreditCard(value)
 
-        #if validated_cc.is_valid():
-            #raise serializers.ValidationError("Credit Card is not valid")
+        if not validated_cc.is_valid():
+            raise serializers.ValidationError("Credit Card is not valid")
 
-        return validated_cc#.brand()
+        return validated_cc.get_brand()
 
     def validate_cvv(self,value):
         if len(value) > 4:
