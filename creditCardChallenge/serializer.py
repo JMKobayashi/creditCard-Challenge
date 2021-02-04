@@ -69,7 +69,7 @@ class CreditCardSerializer(serializers.ModelSerializer):
             except ValueError:
                 raise serializers.ValidationError("Brand was'nt found for this card")
 
-        encrypted_number = creditCardFunction
+        encrypted_number = creditCardFunction.encrypt(value)
         return encrypted_number
 
     def validate_cvv(self,value):
