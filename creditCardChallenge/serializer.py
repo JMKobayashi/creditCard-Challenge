@@ -81,7 +81,8 @@ class CreditCardSerializer(serializers.ModelSerializer):
 
         return value
 
-    def viewRepresentation(self,instance):
-        representation = super(CreditCardSerializer, self).viewRepresentation(instance)
-
+    def to_representation(self,instance):
+        representation = super(CreditCardSerializer, self).to_representation(instance)
+        creditcard_number = representation["number"]
+        representation["number"] = creditCardFunction.decrypt(creditcard_number)
         return representation
