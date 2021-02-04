@@ -10,7 +10,7 @@ from django.http.response import JsonResponse
 class creditCardsView(APIView):
 
     def get(self,request):
-        credit_card_list = CreditCard.objects.all()
+        credit_card_list = CreditCardModel.objects.all()
 
         credit_card_id = request.query_params.get('id',None)
 
