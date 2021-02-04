@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from creditCardChallenge.models import CreditCardModel
+from .function import creditCardFunction
 
 from datetime import datetime
 import calendar
@@ -68,8 +69,8 @@ class CreditCardSerializer(serializers.ModelSerializer):
             except ValueError:
                 raise serializers.ValidationError("Brand was'nt found for this card")
 
-
-        return value
+        encrypted_number = creditCardFunction
+        return encrypted_number
 
     def validate_cvv(self,value):
         if len(value) > 4:
