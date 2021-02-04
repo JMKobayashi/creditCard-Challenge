@@ -42,11 +42,12 @@ class CreditCardSerializer(serializers.ModelSerializer):
         else:
             year = date.strftime("%Y")
 
-        exp_date = datetime.strptime(str("{}-{}-{}".format(year,date.month,last_day_month)),"%Y-%m-%d")
+        exp_date = str("{}-{}-{}".format(year,date.month,last_day_month)),"%Y-%m-%d"
+        exp_datetime = datetime.strptime(exp_date)
         today = datetime.today()
-        if today > exp_date:
+        if today > exp_datetime:
             raise serializers.ValidationError("exp_date is in the past!!")
-       
+
         return exp_date
 
     def validate_holder(self, value):
