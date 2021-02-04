@@ -42,8 +42,8 @@ class CreditCardSerializer(serializers.ModelSerializer):
         else:
             year = date.strftime("%Y")
 
-        exp_date = str("{}-{}-{}".format(year,date.month,last_day_month)),"%Y-%m-%d"
-        exp_datetime = datetime.strptime(exp_date)
+        exp_date = str("{}-{}-{}".format(year,date.month,last_day_month))
+        exp_datetime = datetime.strptime(exp_date, "%Y-%m-%d")
         today = datetime.today()
         if today > exp_datetime:
             raise serializers.ValidationError("exp_date is in the past!!")
@@ -61,8 +61,15 @@ class CreditCardSerializer(serializers.ModelSerializer):
 
         if not validated_cc.is_valid():
             raise serializers.ValidationError("Credit Card is not valid")
+        
+        else:
+            try:
+                self.initial_data['brand'] = validated_cc.get_brand()
+            except ValueError:
+                raise serializers.ValidationError("Brand was'nt found for this card")
 
-        return validated_cc.get_brand()
+
+        return value
 
     def validate_cvv(self,value):
         if len(value) > 4:
