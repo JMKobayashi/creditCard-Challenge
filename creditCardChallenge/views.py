@@ -15,12 +15,12 @@ class creditCardsView(APIView):
         credit_card_id = request.query_params.get('id',None)
 
         if credit_card_id is not None:
-            credit_card = CreditCard.objects.filter(id=int(credit_card_id))
+            credit_card = CreditCardModel.objects.filter(id=int(credit_card_id))
         else:
             credit_card = credit_card_list
 
         serializer_result = CreditCardSerializer(credit_card, many = True)
-        return JsonResponse(serializer_result.data,safe=False,)
+        return JsonResponse(serializer_result.data,safe=False)
 
     def post(self,request):
         
