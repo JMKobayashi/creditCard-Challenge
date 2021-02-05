@@ -43,3 +43,8 @@ def test_post_creditcard(exp_date,holder,number,cvv,status):
     auth = {'Authorization': 'Token b96dc5862a760c6a860cf2366b7b028b3503390b'}
     response = requests.post('http://localhost:8000/credit-card/',headers=auth,data=json.dumps(credit_card))
     assert response.status_code == status
+
+def test_get_creditcard():
+    auth = {'Authorization': 'Token b96dc5862a760c6a860cf2366b7b028b3503390b'}
+    response = requests.get('http://localhost:8000/credit-card/',headers=auth)
+    assert response.status_code == 200
