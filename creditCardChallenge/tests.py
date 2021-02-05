@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 @pytest.mark.parametrize(
     'username,password,status',[
