@@ -1,0 +1,6 @@
+pytest
+cryptography
+djangorestframework
+markdown
+httpie
+python-creditcard
