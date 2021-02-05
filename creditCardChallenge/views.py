@@ -1,7 +1,6 @@
 from rest_framework.parsers import JSONParser
 from rest_framework import status, generics
 from rest_framework.views import APIView
-from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from creditCardChallenge.models import CreditCardModel
