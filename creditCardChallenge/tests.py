@@ -6,3 +6,11 @@ import pytest
         ('admin','123senha123',200)
     ]
 )
+
+def test_token_authentication(username,password,status):
+    user = {
+        "username":username,
+        "password":password
+    }
+
+    
