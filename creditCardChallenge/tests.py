@@ -14,6 +14,6 @@ def test_token_authentication(username,password,status):
         "password":password
     }
 
-    response = resquests.post('http://localhost:8000/token/',user)
+    response = requests.post('http://localhost:8000/token/',user)
 
     assert response.status_code == status
