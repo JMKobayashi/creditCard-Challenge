@@ -10,7 +10,6 @@ from creditCardChallenge.serializer import CreditCardSerializer
 from django.http.response import JsonResponse
 
 class creditCardsView(APIView):
-    authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self,request):
